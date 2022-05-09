@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, FlatList, View, Image, TouchableOpacity } from 'react-native';
 import { CommonHeader } from "../../Components/Header";
-import { fonts, images, colors, strings } from '../../Constant';
+import { strings } from '../../Constant';
 import { GetNewsListAction } from "../../Redux/actions";
 import { connect } from 'react-redux'
 import { ApiKeys } from "../../Configs/ApiKeys";
 import { Routes } from "../../Configs/Routes";
+import HomeStyles from "../../Theme/HomeStyle";
 
 class Home extends React.Component {
 
@@ -19,6 +20,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         try {
+            //method call of get news list
             this.getDetails()
         } catch (error) {
             console.log(error);
@@ -27,6 +29,7 @@ class Home extends React.Component {
 
     async getDetails() {
         try {
+            //data get using fetch api
             let response = await fetch(ApiKeys.url + ApiKeys.topHeadline + ApiKeys.key)
             let json = await response.json()
             console.log(json);
@@ -38,14 +41,14 @@ class Home extends React.Component {
         }
     }
 
+    //render method of flatlist which display news list
     getNewsRender = ({ item, index }) => {
-        console.log(item, "====== item");
         return (
             <TouchableOpacity
                 onPress={() => { this.props.navigation.navigate(Routes.Details, { Data: item }) }}
-                style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
-                <Image source={{ uri: item.urlToImage }} style={{ height: 200, width: 200, }} />
-                <Text style={{ fontSize: fonts.FONT_14, color: colors.Black, textAlign: 'center', paddingTop: 5, fontWeight: 'bold' }}>{item.title}</Text>
+                style={HomeStyles.TouchView}>
+                <Image source={{ uri: item.urlToImage }} style={HomeStyles.ListImg} />
+                <Text style={HomeStyles.ListTxt}>{item.title}</Text>
             </TouchableOpacity>
         )
     }
@@ -53,12 +56,13 @@ class Home extends React.Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
+                {/* common header */}
                 <CommonHeader
                     LeftImg={false}
                     HeaderName={strings.HeaderText}
                     RightView={true}
-                    goBack={()=>this.props.navigation.goBack()}
                 />
+                {/* flatlist with numbers of row two */}
                 <FlatList
                     data={this.state.DataArray}
                     showsVerticalScrollIndicator={false}
