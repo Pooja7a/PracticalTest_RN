@@ -6,9 +6,9 @@ export const CommonHeader = (props) => {
     return (
         <View style={{
             flexDirection: 'row',
-            height: 90,
+            height: fonts.IS_IOS ? 90 : 50,
             backgroundColor: colors.GREEN_Gradient_1,
-            paddingTop: 40,
+            paddingTop: fonts.IS_IOS ? 40 : 10,
             paddingHorizontal: 18,
         }}>
             {
@@ -19,7 +19,7 @@ export const CommonHeader = (props) => {
                     </TouchableOpacity>
                     : null
             }
-            <Text style={{ flex: 1, fontSize: fonts.FONT_22, color: colors.White, textAlign: 'left', paddingTop: 5, fontWeight: 'bold' }}>{props.HeaderName}</Text>
+            <Text style={{ flex: 1, fontSize: fonts.FONT_22, color: colors.White, textAlign: 'left', paddingTop: fonts.IS_IOS ? 5 : 2, fontWeight: 'bold' }}>{props.HeaderName}</Text>
             {
                 props.RightView
                     ?
