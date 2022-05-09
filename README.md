@@ -2,11 +2,13 @@
 Need to install node modules for that hit command in your root project
     yarn install  or npm install
 
+
 IOS:
 Once node module install you need to install iOS pod so that move into iOS folder like
-    cd ios && pod install %% cd ..
+    cd ios && pod install && cd ..
     
 Once done, hit  npx react-native run-ios  to run the application in IOS it takes 10 to 15 mins at the very first time.
+
 
 
 Android :

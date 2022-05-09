@@ -1,4 +1,4 @@
-export const strings={
-  ALERT:'Alert',
- 
+export const strings = {
+  HeaderText: "Top Headlines",
+  DetailsHeaderTxt: "New Detail",
 }
