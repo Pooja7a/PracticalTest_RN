@@ -53,6 +53,14 @@ class Home extends React.Component {
         )
     }
 
+    filterPress() {
+
+    }
+
+    SearchPress() {
+
+    }
+
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -61,6 +69,8 @@ class Home extends React.Component {
                     LeftImg={false}
                     HeaderName={strings.HeaderText}
                     RightView={true}
+                    pressFilter={() => this.filterPress()}
+                    pressSearch={() => this.SearchPress()}
                 />
                 {/* flatlist with numbers of row two */}
                 <FlatList

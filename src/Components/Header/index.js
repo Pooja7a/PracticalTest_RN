@@ -15,7 +15,7 @@ export const CommonHeader = (props) => {
                 props.LeftImg
                     ?
                     <TouchableOpacity onPress={props.goBack}>
-                    <Image source={images.LEFT_ARROW} style={{ height: 35, width: 35 }} />
+                        <Image source={images.LEFT_ARROW} style={{ height: 35, width: 35 }} />
                     </TouchableOpacity>
                     : null
             }
@@ -27,10 +27,10 @@ export const CommonHeader = (props) => {
                         flexDirection: 'row',
                         paddingTop: 5,
                     }}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={props.pressSearch}>
                             <Image source={images.SEARCH} style={{ marginRight: 15, height: 25, width: 25, resizeMode: 'contain' }} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={props.pressFilter}>
                             <Image source={images.FILTER} style={{ height: 25, width: 25, resizeMode: 'contain' }} />
                         </TouchableOpacity>
                     </View>
