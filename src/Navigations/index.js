@@ -5,7 +5,7 @@ import { createStackNavigator, TransitionPresets } from "@react-navigation/stack
 import { Routes } from "../Configs/Routes";
 const AppStack = createStackNavigator()
 
-class RootStack extends React.Component{
+class RootStack extends React.Component {
     render() {
         return (
             <AppStack.Navigator
@@ -13,8 +13,7 @@ class RootStack extends React.Component{
                     headerShown: false,
                     gestureEnabled: false,
                     ...TransitionPresets.SlideFromRightIOS,
-                headerMode:"screen"
-
+                    headerMode: "screen"
                 }}
                 initialRouteName={Routes.Home}
             >

@@ -23,7 +23,8 @@ async function DataAPI(apiName, method, params) {
 }
 export default  {
     async GetNewsList(params) {
-        const GetNewsList = DataAPI()
+        console.log(params,'========= params');
+        const GetNewsList = DataAPI(params.params.path,"GET")
         return GetNewsList;
     },
 }

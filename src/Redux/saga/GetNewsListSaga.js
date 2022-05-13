@@ -5,6 +5,7 @@ import Api from "../../Configs/Api"
 export function* FetchDetails(params) {
   try {
     const response = yield call(Api.GetNewsList, params)
+    //send SUCCESS action that will be catched by reducer
     yield put({ type: GET_NEWS_SUCCESS, payload: response })
   } catch (e) {
     yield put({ type: GET_NEWS_FAILED, payload: e })

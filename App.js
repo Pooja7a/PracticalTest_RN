@@ -7,11 +7,14 @@ import createSagaMiddleware from "@redux-saga/core";
 import rootSaga from './src/Redux/saga'
 import reducer from './src/Redux/reducer'
 import RootStack from './src/Navigations'
+//create instance of sagamiddle ware
 const sagaMiddleware = createSagaMiddleware()
+// mount it on the Store
 const store = createStore(
   reducer,
   applyMiddleware(sagaMiddleware)
 )
+//plug Root Saga
 sagaMiddleware.run(rootSaga)
 
 class App extends React.Component{

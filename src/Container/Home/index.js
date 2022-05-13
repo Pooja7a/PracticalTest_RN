@@ -27,15 +27,38 @@ class Home extends React.Component {
         }
     }
 
+    async UNSAFE_componentWillReceiveProps(nextProps) {
+        try {
+            if (this.state.ApiFlag) {
+                this.setState({ ApiFlag: false })
+                if (nextProps.GetNewsList.getNewsListSuccess) {
+                    if (nextProps.GetNewsList.data[1] == 200) {
+                        let data = nextProps.GetNewsList.data[0]
+                        this.setState({ DataArray: data.articles })
+                    }
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async getDetails() {
         try {
             //data get using fetch api
-            let response = await fetch(ApiKeys.url + ApiKeys.topHeadline + ApiKeys.key)
-            let json = await response.json()
-            console.log(json);
-            if (json.articles.length > 0) {
-                this.setState({ DataArray: json.articles })
+            // let response = await fetch(ApiKeys.url + ApiKeys.topHeadline + ApiKeys.key)
+            // let json = await response.json()
+            // console.log(json);
+            // if (json.articles.length > 0) {
+            //     this.setState({ DataArray: json.articles })
+            // }
+
+
+            let payload = {
+                [ApiKeys.path]: ApiKeys.topHeadline + ApiKeys.key
             }
+            this.setState({ ApiFlag: true })
+            this.props.GetNewsListAction(payload)
         } catch (error) {
             console.log(error);
         }
@@ -54,7 +77,10 @@ class Home extends React.Component {
     }
 
     filterPress() {
-
+        try {
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     SearchPress() {
@@ -84,4 +110,9 @@ class Home extends React.Component {
         )
     }
 }
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        GetNewsList: state.GetNewsList,
+    };
+}
+export default connect(mapStateToProps, { GetNewsListAction })(Home);
